@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: medical-claim-rpa-agent
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: MAX_LINES_PER_CLAIM
+        value: 28
+      - key: ER_CONSOLIDATION_HOURS
+        value: 24
+      - key: IMAGING_GROUPING_HOURS
+        value: 24
+      - key: MAX_FILE_SIZE_MB
+        value: 50
+      - key: LOG_LEVEL
+        value: INFO
+      - key: VALIDATE_MEDICAL_CODES
+        value: true
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_REFRESH_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
